@@ -4,7 +4,7 @@ This is a VS Code extension for the [Algorand Blockchain](https://www.algorand.c
 
 ## Functionality
 
-This extension provides the following features:
+This extension provides the following features. Please see the video recording for the [feature walkthrough](recordings/feature_walkthrough.mp4).
 
 - TEAL language support
   - TEAL syntax highlight
