@@ -1,0 +1,13 @@
+{
+	"compilerOptions": {
+		"module": "commonjs",
+		"target": "es2019",
+		"lib": ["ES2019", "dom"],
+		"jsx": "react",
+		"outDir": "out",
+		"rootDir": "src",
+		"sourceMap": true,
+		"resolveJsonModule": true
+	},
+	"exclude": ["node_modules", ".vscode-test", "src/view"]
+}

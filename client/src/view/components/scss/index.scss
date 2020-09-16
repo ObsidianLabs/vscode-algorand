@@ -1,0 +1,179 @@
+@import "bootstrap/scss/_functions.scss";
+@import './theme.scss';
+
+$theme-colors: (
+  "primary": $primary,
+  "secondary": $secondary,
+);
+$component-active-bg: $primary;
+$yiq-contrasted-threshold: 180;
+
+$hr-border-color: $secondary;
+$hr-border-width: 1px;
+
+$border-radius: .4rem;
+$border-radius-lg: $border-radius;
+$border-radius-sm: $border-radius;
+$badge-border-radius: 0.3rem;
+$paragraph-margin-bottom: 0.25rem;
+
+$text-muted: $gray-500;
+$code-color: inherit;
+$font-family-sans-serif: "Open Sans";
+$font-family-monospace: "Hack";
+
+$kbd-padding-y: .1rem;
+$kbd-bg: $secondary;
+$kbd-color: $gray-200;
+
+$navbar-padding-y: 0;
+$nav-tabs-border-radius: 0;
+$nav-link-padding-x: 1rem;
+$nav-link-padding-y: 0.4rem;
+$nav-tabs-link-active-bg: $primary;
+$nav-tabs-link-active-color: $white;
+
+$card-bg: $background;
+$card-border-width: 0;
+$card-border-radius: 0;
+$card-spacer-y: .75rem;
+$card-spacer-x: 1rem;
+
+$jumbotron-bg: $background;
+$jumbotron-padding: 1.5rem;
+$modal-md: 720px;
+$modal-content-bg: $background;
+$modal-header-border-color: $black;
+$modal-backdrop-opacity: .7;
+$btn-disabled-opacity: .3;
+
+$btn-focus-box-shadow: none !important;
+$btn-active-box-shadow: none;
+// $input-btn-focus-box-shadow: none;
+$input-focus-border-color: lighten($component-active-bg, 10%);
+$input-border-width: $border-width;
+$input-disabled-bg: $background2;
+// $input-focus-border-color: $component-active-bg;
+$custom-control-indicator-border-width: 1px;
+$custom-control-indicator-focus-border-color: $gray-500;
+
+$list-group-bg: $background;
+$list-group-border-width: 1px;
+$list-group-border-radius: $border-radius;
+$list-group-border-color: $secondary;
+$list-group-action-color: $light;
+$list-group-action-active-color: $light;
+$list-group-action-active-bg: $dark;
+$list-group-hover-bg: rgba($secondary, 0.5);
+
+$alert-border-width: $border-width;
+$alert-padding-y: .5rem;
+$alert-padding-x: 0.75rem;
+$alert-color-level: 0;
+
+$line-height-xs: 0.75;
+$input-bg: $background2;
+$input-focus-bg: $dark2;
+$input-color: $light;
+// $input-placeholder-color: $text-muted;
+$input-border-color: $border;
+$input-group-addon-color: $light;
+$input-group-addon-bg: $secondary;
+$input-group-addon-border-color: $border;
+$input-focus-color: $light;
+$input-btn-line-height-xs: $line-height-xs;
+$input-btn-padding-y-xs: .3rem;
+$input-btn-padding-x-xs: .4rem;
+$border-radius-xs: .2rem;
+
+$custom-checkbox-indicator-border-radius: .25rem;
+$custom-control-indicator-focus-box-shadow: none;
+$custom-select-indicator-color: $text-muted;
+
+@import "bootstrap/scss/_variables.scss";
+
+$close-color: $light;
+$close-text-shadow: 0 1px 0 $dark;
+
+$dropdown-min-width: 9.5rem;
+$dropdown-padding-y: .3rem;
+$dropdown-spacer: .25rem;
+$dropdown-item-padding-x: 1rem;
+$dropdown-bg: $background2;
+$dropdown-link-color: rgba($white, .8);
+$dropdown-border-width: 1px;
+$dropdown-border-color: $black;
+$dropdown-divider-bg: $black;
+$dropdown-link-hover-color: rgba($white, .9);
+$dropdown-link-hover-bg: $secondary;
+$dropdown-link-active-color: $white;
+$dropdown-link-active-bg: $primary;
+$dropdown-header-color: $text-muted;
+
+$btn-line-height-xs: $input-btn-line-height-xs;
+$btn-padding-y-xs: $input-btn-padding-y-xs;
+$btn-padding-x-xs: $input-btn-padding-x-xs;
+$font-size-xs: ($font-size-base * .75);
+$btn-border-radius-xs: $border-radius-xs;
+
+$table-border-color: $border;
+$table-border-width: $border-width;
+$table-hover-bg: rgba($secondary, 0.5);
+$table-accent-bg: $background2;
+$progress-bg: $dark2;
+
+$primary2: mix($white, $primary, 20%);
+$success2: mix($white, $success, 20%);
+$warning2: mix($white, $warning, 20%);
+$info2: mix($white, $info, 20%);
+$link-hover-color: $link-color;
+
+@import "bootstrap/scss/bootstrap.scss";
+@import "./dropdown.scss";
+@import "./modal.scss";
+
+html, body, #root, .h-100 {
+  height: 100%;
+  user-select: none;
+}
+
+:root {
+  --color-white: var(--white) !important;
+  --color-black: #{$black} !important;
+
+  --color-text: #{$white} !important;
+  --color-text-muted: #{$text-muted} !important;
+  --color-link: #{$link-color} !important;
+
+  --color-border: #{$border} !important;
+
+  --color-bg: #{$background} !important;
+  --color-bg2: var(--dark) !important;
+  --color-bg-invalid: #{$dark2} !important;
+  --color-hover: #{$gray-600} !important;
+	--color-placeholder: #{$gray-600} !important;
+	
+  --color-primary: #{$primary} !important;
+  --color-secondary: #{$secondary} !important;
+  --color-success: #{$success} !important;
+  --color-warning: #{$warning} !important;
+  --color-danger: #{$danger} !important;
+  --color-info: #{$info} !important;
+}
+
+.table {
+  margin-bottom: 0.5em;
+  &.table-fixed {
+    table-layout: fixed;
+	}
+	& th {
+		text-transform: lowercase;
+		font-variant: small-caps;
+		color: $text-muted;
+		font-weight: 600;
+		letter-spacing: 0.05em;
+	}
+  & td {
+    vertical-align: middle;
+  }
+}
