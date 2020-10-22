@@ -54,7 +54,6 @@ const fieldsByType = {
 	],
 	'asset-opt-in': [
 		{ label: 'From', name: 'from' },
-		{ label: 'To', name: 'to' },
 		{ label: 'Note', name: 'note' },
 		{ label: 'Asset ID', name: 'assetId' },
 	],
