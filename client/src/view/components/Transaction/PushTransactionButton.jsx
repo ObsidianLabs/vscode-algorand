@@ -1,8 +1,10 @@
 import React, { PureComponent } from 'react'
+import classnames from 'classnames'
 
 import {
   Button,
-  Modal,
+	Modal,
+	UncontrolledTooltip,
 } from '@obsidians/ui-components'
 
 import path from 'path-browserify'
@@ -22,6 +24,10 @@ export default class PushTransactionButton extends PureComponent {
 	}
 
 	onClickButton = async () => {
+		if (!this.props.running) {
+			return
+		}
+
 		this.modal.current.openModal()
 		this.modal.current.hideError()
 		try {
@@ -113,20 +119,21 @@ export default class PushTransactionButton extends PureComponent {
 	}
 	
   render () {
-		if (!this.props.running) {
-			return null
-		}
-
     return (
       <React.Fragment>
         <Button
+					id='push-transaction'
+					key='push-transaction'
           color='success'
-          className={this.props.className}
+					className={classnames(this.props.className, !this.props.running && 'disabled')}
 					onClick={this.onClickButton}
         >
           <i className='fas fa-upload mr-1' />
           Push Transaction
         </Button>
+				<UncontrolledTooltip target='push-transaction'>
+					{!this.props.running && 'No Algorand node is started'}
+				</UncontrolledTooltip>
         <Modal
 					ref={this.modal}
 					overflow
