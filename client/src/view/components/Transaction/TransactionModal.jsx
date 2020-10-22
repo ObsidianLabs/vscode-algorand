@@ -77,7 +77,7 @@ const fieldsByType = {
 	],
 }
 
-export default class Transaction extends PureComponent {
+export default class TransactionModal extends PureComponent {
 	constructor (props) {
 		super(props)
 		this.modal = React.createRef()
@@ -160,6 +160,7 @@ export default class Transaction extends PureComponent {
 					key='signer'
 					size='sm'
 					label='Signer'
+					placeholder={`Default: ${this.state.values.from || '{From}'}`}
 					value={this.state.signer}
 					onChange={signer => this.setState({ signer })}
 				/>

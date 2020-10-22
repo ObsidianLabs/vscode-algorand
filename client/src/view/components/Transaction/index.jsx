@@ -79,7 +79,7 @@ export default class Transaction extends PureComponent {
 					txn.lease = data.lease
 				}
 				if (data.signMethod === 'regular') {
-					txn.signers = data.signer ? [data.signer] : []
+					txn.signers = data.signer ? [data.signer] : data.from ? [data.from] : []
 				} else if (data.signMethod === 'multisig') {
 					txn.signers = (data.signers || '').split(',').map(x => x.trim())
 				} else if (data.signMethod === 'contract-account') {
