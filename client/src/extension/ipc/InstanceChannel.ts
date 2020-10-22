@@ -19,7 +19,20 @@ export default class InstanceChannel extends IpcChannel {
 		algorandImageChannel.setPanel(panel)
 	}
 
+	async checkDocker () {
+		const result = await this.exec('docker info')
+		if (result.code) {
+			vscode.window.showWarningMessage('Docker is required to use Algorand extension. Please make sure Docker is installed and started.')
+			return false
+		}
+		return true
+	}
+
 	async list () {
+		if (!await this.checkDocker()) {
+			return
+		}
+
 		const { logs: containers } = await this.exec(`docker ps --format "{{json . }}"`)
 		const algoNodes = containers.split('\n').filter(Boolean).map(t => JSON.parse(t)).filter(x => x.Names.startsWith('algorand-')).map(x => x.Names)
 
@@ -41,6 +54,10 @@ export default class InstanceChannel extends IpcChannel {
 	}
 
 	async create ({ name, version, chain = 'testnet' }) {
+		if (!await this.checkDocker()) {
+			return
+		}
+
 		const execution = new vscode.CustomExecution(async (): Promise<vscode.Pseudoterminal> => {
 			return new AlgorandVolumeTerminal(name, version, chain)
 		})
@@ -66,10 +83,17 @@ export default class InstanceChannel extends IpcChannel {
 	}
 
 	async delete (name) {
+		if (!await this.checkDocker()) {
+			return
+		}
     await this.exec(`docker volume rm algorand-${name}`)
 	}
 
 	async startNode ({ name, version }, counter) {
+		if (!await this.checkDocker()) {
+			return
+		}
+
 		const existingVersions = await algorandImageChannel.versions()
 		if (!existingVersions.find(v => v.Tag === version)) {
 			this.sendResponse({ counter, stop: true })
@@ -101,6 +125,9 @@ export default class InstanceChannel extends IpcChannel {
 	}
 
 	async stopNode ({ name, version }) {
+		if (!await this.checkDocker()) {
+			return
+		}
 		await this.exec(`docker stop algorand-${name}-${version}`)
 	}
 

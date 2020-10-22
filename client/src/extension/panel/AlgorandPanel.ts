@@ -83,11 +83,6 @@ export default class AlgorandPanel {
 	private _getHtmlForWebview(webview: vscode.Webview) {
 		const clientUri = vscode.Uri.joinPath(this.extensionUri, 'client')
 
-		// const purecssBase = webview.asWebviewUri(vscode.Uri.joinPath(clientUri, 'node_modules', 'purecss', 'build', 'base-min.css'))
-		// const purecssGrids = webview.asWebviewUri(vscode.Uri.joinPath(clientUri, 'node_modules', 'purecss', 'build', 'grids-min.css'))
-		// const purecssButtons = webview.asWebviewUri(vscode.Uri.joinPath(clientUri, 'node_modules', 'purecss', 'build', 'buttons-min.css'))
-		// const purecssTables = webview.asWebviewUri(vscode.Uri.joinPath(clientUri, 'node_modules', 'purecss', 'build', 'tables-min.css'))
-
 		const reactAppUri = webview.asWebviewUri(vscode.Uri.joinPath(clientUri, 'out', 'view', 'index.js'))
 
 		const html = `<!DOCTYPE html>

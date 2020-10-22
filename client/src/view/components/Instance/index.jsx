@@ -67,6 +67,10 @@ export default class InstanceList extends PureComponent {
       return <tr><td align='center' colSpan={6} key='loading'><i className='fas fa-spin fa-spinner mr-1' />Loading...</td></tr>
 		}
 
+		if (!this.state.instances) {
+      return <tr><td align='center' colSpan={6}>(Docker not started. Please install and start Docker first)</td></tr>
+		}
+
     if (!this.state.instances.length) {
       return <tr><td align='center' colSpan={6}>(No Algorand instance)</td></tr>
 		}
