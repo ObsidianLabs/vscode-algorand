@@ -46,7 +46,7 @@ export default class Transaction extends PureComponent {
 		this.state = {
 			txns: [],
 			txnsJson: '{\n  "txns": []\n}',
-			keysFile: `${window.workspaceRoot}/keys`
+			keysFile: `${window.workspaceRoot}/keys.json`
 		}
 	}
 
@@ -141,7 +141,7 @@ export default class Transaction extends PureComponent {
           <InputGroup>
             <Input
 							size='sm'
-              placeholder={`Default: ${window.workspaceRoot}/keys`}
+              placeholder={`Default: ${window.workspaceRoot}/keys.json`}
               value={this.state.keysFile}
               onChange={e => this.setState({ keysFile: e.target.value })}
             />

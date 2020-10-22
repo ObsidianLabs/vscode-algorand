@@ -32,7 +32,7 @@ export default class PushTransactionButton extends PureComponent {
 		this.modal.current.hideError()
 		try {
 			const content = await instanceChannel.invoke('readFile', this.props.keysFile, 'utf8')
-			const mnemonics = content.split('\n').filter(Boolean)
+			const mnemonics = JSON.parse(content).map(item => item.mnemonic).filter(Boolean)
 			const keys = mnemonics.map(m => kp.importKeypair(m))
 			this.setState({ keys })
 		} catch (e) {
