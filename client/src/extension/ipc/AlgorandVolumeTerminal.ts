@@ -29,8 +29,9 @@ export default class AlgorandVolumeTerminal implements vscode.Pseudoterminal {
 
 		const snapshotDir = path.join(tmpdir, 'algorand-snapshot')
 		this.writeEmitter.fire(`\r\nDownloading Algorand snapshot to ${snapshotDir}\r\n\r\n`)
-		const snapshot = `https://algorand-snapshots.s3.us-east-1.amazonaws.com/network/${subFolder}/latest.tar.gz`
-		// const snapshot = `https://obsidianreleasesintl.oss-accelerate.aliyuncs.com/Algorand/network/${subFolder}/latest.tar.gz`
+
+		const snapshot = `https://algorand-snapshots.oss-accelerate.aliyuncs.com/${subFolder}/latest.tar.gz`
+		// const snapshot = `https://algorand-snapshots.s3.us-east-1.amazonaws.com/network/${subFolder}/latest.tar.gz`
 		await ChildProcess.exec(`curl ${snapshot} -o latest.tar.gz`, { cwd: snapshotDir }, { writeEmitter: this.writeEmitter })
 		await ChildProcess.exec(`tar xvf latest.tar.gz -C data/${subFolder}`, { cwd: snapshotDir }, { writeEmitter: this.writeEmitter })
 
