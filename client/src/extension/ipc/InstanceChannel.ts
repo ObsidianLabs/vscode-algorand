@@ -163,6 +163,10 @@ export default class InstanceChannel extends IpcChannel {
 		return content
 	}
 
+	async showWarningMessage (message) {
+		vscode.window.showWarningMessage(message)
+	}
+
 	async readFile (filePath, encoding = 'utf8') {
 		const content = fs.readFileSync(filePath, encoding)
 		return content

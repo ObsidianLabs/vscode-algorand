@@ -120,8 +120,42 @@ export default class Transaction extends PureComponent {
 	importTxns = async () => {
 		const txnsJson = await instanceChannel.invoke('importTxns', window.workspaceRoot)
 		try {
-			this.onChange(JSON.parse(txnsJson).txns.map(withLabel), true)
-		} catch (e) {}
+			const txns = JSON.parse(txnsJson).txns.map(txn => {
+				const data = {
+					type: txn.type,
+					values: txn.params,
+					fee: txn.fee,
+					flatFee: txn.flatFee,
+					lease: txn.lease,
+				}
+				if (txn.lsig) {
+					if (txn.lsig.signer) {
+						data.signMethod = 'delegated-approval'
+						data.program = txn.lsig.program.replace(`base64:`, '')
+						data.args = txn.lsig.args
+					} else {
+						data.signMethod = 'contract-account'
+						data.program = txn.lsig.program.replace(`base64:`, '')
+						data.args = txn.lsig.args
+					}
+				} else if (txn.signers) {
+					if (txn.signers.length <= 1) {
+						data.signMethod = 'regular'
+						data.signer = txn.signers[0] || ''
+					} else {
+						data.signMethod = 'multisig'
+						data.signers = txn.signers.join(',\n')
+					}
+				} else {
+					data.signMethod = 'regular'
+					data.signer = ''
+				}
+				return data
+			})
+			this.onChange(txns.map(withLabel))
+		} catch (e) {
+			instanceChannel.invoke('showWarningMessage', 'Fail to parse the selected file.')
+		}
 	}
 
 	chooseKeysPath = () => {}
