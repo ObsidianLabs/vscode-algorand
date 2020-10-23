@@ -56,6 +56,20 @@ An Algorand transaction can consist of a list of individual parts, known as *ato
 
 To be able to perform the signing process, you need to provide a `keys.json` file of the following format. Be careful that all private information here is saved in plain text so **DO NOT USE THEM ON MAINNET**.
 
+``` js
+[
+  {
+    "address": "{address A}",
+    "mnemonic": "{mnemonic for address A}"
+  },
+  {
+    "address": "{address B}",
+    "mnemonic": "{mnemonic for address B}"
+  }
+  // and more
+]
+```
+
 #### Algorand smart contract
 
 We provided an example project to demostrate how to use this extension to work on Algorand smart contract.
@@ -65,21 +79,7 @@ We provided an example project to demostrate how to use this extension to work o
 3. Open the file `main.teal` and press `Cmd+Shift+B` to compile the TEAL script;
 4. Open the *Algorand Panel* and start an Algorand node. Make sure the node has synced with the network;
 5. Import the transaction by selecting the file `txns/call_contract.json`;
-6. Click the *Push Transaction* button to push the transaction
-
-``` js
-[
-	{
-		"address": "{address A}",
-		"mnemonic": "{mnemonic for address A}"
-	},
-	{
-		"address": "{address B}",
-		"mnemonic": "{mnemonic for address B}"
-	}
-	// and more
-]
-```
+6. Click the *Push Transaction* button to push the transaction.
 
 When finished, click the *Push Transaction* button, confirm and send the transaction to the Algorand network.
 
