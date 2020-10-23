@@ -43,4 +43,27 @@ export default class AlgorandVolumeTerminal implements vscode.Pseudoterminal {
 
 		this.closeEmitter.fire()
 	}
+
+	private async createVolumeWithCatchpoint(): Promise<void> {
+		this.writeEmitter.fire(`Clean up\r\n\r\n`)
+
+		this.writeEmitter.fire(`\r\nFetch Algorand catchpoint\r\n`)
+		const catchpointUrl = `https://algorand-catchpoints.s3.us-east-2.amazonaws.com/channel/testnet/latest.catchpoint`
+		const { logs: catchpoint } = await ChildProcess.exec(`curl -s ${catchpointUrl}`, null, { writeEmitter: this.writeEmitter })
+		console.log(catchpoint)
+
+		this.writeEmitter.fire(`\r\nCreating a new Algorand node instance...\r\n\r\n`)
+		await ChildProcess.exec(`docker volume create --label version=${this.version},chain=${this.chain} algorand-${this.name}`, null, { writeEmitter: this.writeEmitter })
+    await ChildProcess.exec(`docker run --rm -v algorand-${this.name}:/data algorand/stable:${this.version} /bin/bash -c 'cp genesisfiles/${this.chain}/genesis.json /data/genesis.json'`, null, { writeEmitter: this.writeEmitter })
+    await ChildProcess.exec(`docker run -d --rm -it --name algorand-config-${this.name} -v algorand-${this.name}:/data algorand/stable:${this.version} /bin/bash`, null, { writeEmitter: this.writeEmitter })
+		
+		await ChildProcess.exec(`docker exec algorand-config-${this.name} ./goal node start -d /data -l 0.0.0.0:8080`, null, { writeEmitter: this.writeEmitter })
+		await ChildProcess.exec(`docker exec algorand-config-${this.name} ./goal node status -d /data`, null, { writeEmitter: this.writeEmitter })
+		await ChildProcess.exec(`docker exec algorand-config-${this.name} ./goal node catchup ${catchpoint.trim()} -d /data`, null, { writeEmitter: this.writeEmitter })
+		await ChildProcess.exec(`docker exec algorand-config-${this.name} ./goal node status -d /data`, null, { writeEmitter: this.writeEmitter })
+		
+		await ChildProcess.exec(`docker stop algorand-config-${this.name}`, null, { writeEmitter: this.writeEmitter })
+
+		this.closeEmitter.fire()
+	}
 }
