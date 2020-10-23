@@ -1,0 +1,30 @@
+{
+  "accounts": [
+    {
+      "name": "MultiSig",
+      "msig": {
+        "version": 1,
+        "threshold": 2,
+        "addrs": [
+          "LEK4LPP5IRJDRDQIXFTWLBWPJXJGBHW23FB4KP2LBONW6JMWTLN4GMKCMM",
+          "5XMNQUQWCNKDJZJD4H3GZKFN7ZV3EHA72QWW425YVE26TCO6JBIQ65APO4",
+          "IRSQTDADXKRE66ZIDODB4EENNOBOS2YW4NYZV6QZGUAAWIMN3JCAPTS5DY"
+        ]
+      }
+    }
+  ],
+  "txns": [
+    {
+      "type": "pay",
+      "params": {
+        "from": "MultiSig",
+        "to": "LEK4LPP5IRJDRDQIXFTWLBWPJXJGBHW23FB4KP2LBONW6JMWTLN4GMKCMM",
+        "amount": 1
+      },
+      "signers": [
+        "LEK4LPP5IRJDRDQIXFTWLBWPJXJGBHW23FB4KP2LBONW6JMWTLN4GMKCMM",
+        "5XMNQUQWCNKDJZJD4H3GZKFN7ZV3EHA72QWW425YVE26TCO6JBIQ65APO4"
+      ]
+    }
+  ]
+}

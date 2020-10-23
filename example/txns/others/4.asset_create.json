@@ -1,0 +1,19 @@
+{
+  "txns": [
+    {
+      "type": "asset-create",
+      "params": {
+        "name": "My Token",
+        "unit": "MT",
+        "total": 100000000,
+        "decimals": 2,
+        "from": "LEK4LPP5IRJDRDQIXFTWLBWPJXJGBHW23FB4KP2LBONW6JMWTLN4GMKCMM",
+        "manager": "LEK4LPP5IRJDRDQIXFTWLBWPJXJGBHW23FB4KP2LBONW6JMWTLN4GMKCMM",
+        "url": ""
+      },
+      "signers": [
+        "LEK4LPP5IRJDRDQIXFTWLBWPJXJGBHW23FB4KP2LBONW6JMWTLN4GMKCMM"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,26 @@
+{
+  "txns": [
+    {
+      "type": "asset-opt-in",
+      "params": {
+        "assetId": 9703094,
+        "from": "5XMNQUQWCNKDJZJD4H3GZKFN7ZV3EHA72QWW425YVE26TCO6JBIQ65APO4"
+      },
+      "signers": [
+        "5XMNQUQWCNKDJZJD4H3GZKFN7ZV3EHA72QWW425YVE26TCO6JBIQ65APO4"
+      ]
+    },
+    {
+      "type": "asset-transfer",
+      "params": {
+        "assetId": 9703094,
+        "from": "LEK4LPP5IRJDRDQIXFTWLBWPJXJGBHW23FB4KP2LBONW6JMWTLN4GMKCMM",
+        "to": "5XMNQUQWCNKDJZJD4H3GZKFN7ZV3EHA72QWW425YVE26TCO6JBIQ65APO4",
+        "amount": 10
+      },
+      "signers": [
+        "LEK4LPP5IRJDRDQIXFTWLBWPJXJGBHW23FB4KP2LBONW6JMWTLN4GMKCMM"
+      ]
+    }
+  ]
+}

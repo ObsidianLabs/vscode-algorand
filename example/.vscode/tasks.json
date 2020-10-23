@@ -1,0 +1,15 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+    {
+      "type": "Algorand Compiler",
+      "version": "2.1.6",
+      "problemMatcher": [],
+      "label": "Algorand Compiler: TEAL or PyTeal",
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      }
+    }
+  ]
+}

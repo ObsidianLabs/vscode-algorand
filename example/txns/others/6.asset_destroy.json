@@ -1,0 +1,14 @@
+{
+  "txns": [
+    {
+      "type": "asset-destroy",
+      "params": {
+        "assetId": 9703094,
+        "from": "LEK4LPP5IRJDRDQIXFTWLBWPJXJGBHW23FB4KP2LBONW6JMWTLN4GMKCMM"
+      },
+      "signers": [
+        "LEK4LPP5IRJDRDQIXFTWLBWPJXJGBHW23FB4KP2LBONW6JMWTLN4GMKCMM"
+      ]
+    }
+  ]
+}

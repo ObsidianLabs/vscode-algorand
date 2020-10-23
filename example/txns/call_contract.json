@@ -1,0 +1,28 @@
+{
+  "txns": [
+    {
+      "type": "pay",
+      "params": {
+        "from": "5XMNQUQWCNKDJZJD4H3GZKFN7ZV3EHA72QWW425YVE26TCO6JBIQ65APO4",
+        "to": "LEK4LPP5IRJDRDQIXFTWLBWPJXJGBHW23FB4KP2LBONW6JMWTLN4GMKCMM",
+        "amount": 0.001
+      },
+      "flatFee": true,
+      "signers": ["5XMNQUQWCNKDJZJD4H3GZKFN7ZV3EHA72QWW425YVE26TCO6JBIQ65APO4"]
+    },
+    {
+      "type": "pay",
+      "params": {
+        "from": "LEK4LPP5IRJDRDQIXFTWLBWPJXJGBHW23FB4KP2LBONW6JMWTLN4GMKCMM",
+        "to": "IRSQTDADXKRE66ZIDODB4EENNOBOS2YW4NYZV6QZGUAAWIMN3JCAPTS5DY",
+        "amount": 1,
+        "lease": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAE="
+      },
+      "flatFee": true,
+      "lsig": {
+        "program": "base64:./main.teal.tok",
+        "signer": "LEK4LPP5IRJDRDQIXFTWLBWPJXJGBHW23FB4KP2LBONW6JMWTLN4GMKCMM"
+      }
+    }
+  ]
+}
