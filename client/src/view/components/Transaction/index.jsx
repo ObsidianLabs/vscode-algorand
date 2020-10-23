@@ -4,6 +4,8 @@ import {
 	Card,
 	MultiSelect,
 	FormGroup,
+	ButtonGroup,
+	Button,
 	Label,
 	InputGroup,
 	Input,
@@ -79,7 +81,7 @@ export default class Transaction extends PureComponent {
 					txn.lease = data.lease
 				}
 				if (data.signMethod === 'regular') {
-					txn.signers = data.signer ? [data.signer] : data.from ? [data.from] : []
+					txn.signers = data.signer ? [data.signer] : data.values.from ? [data.values.from] : []
 				} else if (data.signMethod === 'multisig') {
 					txn.signers = (data.signers || '').split(',').map(x => x.trim())
 				} else if (data.signMethod === 'contract-account') {
@@ -109,6 +111,17 @@ export default class Transaction extends PureComponent {
 	onClickLabel = async data => {
 		const updated = await this.modal.current.openModal(data)
 		return withLabel(updated)
+	}
+
+	exportTxns = async () => {
+		await instanceChannel.invoke('exportTxns', this.state.txnsJson, window.workspaceRoot)
+	}
+
+	importTxns = async () => {
+		const txnsJson = await instanceChannel.invoke('importTxns', window.workspaceRoot)
+		try {
+			this.onChange(JSON.parse(txnsJson).txns.map(withLabel), true)
+		} catch (e) {}
 	}
 
 	chooseKeysPath = () => {}
@@ -153,7 +166,13 @@ export default class Transaction extends PureComponent {
           </InputGroup>
         </FormGroup>
 				<FormGroup>
-					<Label>Transaction Object</Label>
+					<div className='d-flex flex-row justify-content-between align-items-center'>
+						<Label>Transaction Object</Label>
+						<ButtonGroup>
+							<Button color='primary' size='sm' onClick={this.exportTxns}>Export</Button>
+							<Button color='primary' size='sm' onClick={this.importTxns}>Import</Button>
+						</ButtonGroup>
+					</div>
 					<pre className='pre-box my-0 small'>{this.state.txnsJson}</pre>
 				</FormGroup>
         <TransactionModal

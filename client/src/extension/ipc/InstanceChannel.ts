@@ -139,6 +139,30 @@ export default class InstanceChannel extends IpcChannel {
 		return InstanceChannel.txns
 	}
 
+	async exportTxns (txns, defaultPath) {
+		const result = await vscode.window.showSaveDialog({
+			title: 'Export transaction object',
+			defaultUri: vscode.Uri.file(defaultPath),
+			filters: { 'json': ['json'] },
+		})
+		if (result && result.path) {
+			fs.writeFileSync(result.path, txns)
+		}
+	}
+
+	async importTxns (defaultPath) {
+		const result = await vscode.window.showOpenDialog({
+			title: 'Import transaction object',
+			defaultUri: vscode.Uri.file(defaultPath),
+			filters: { 'json': ['json'] },
+		})
+		if (!result) {
+			return
+		}
+		const content = fs.readFileSync(result[0].path, 'utf8')
+		return content
+	}
+
 	async readFile (filePath, encoding = 'utf8') {
 		const content = fs.readFileSync(filePath, encoding)
 		return content
