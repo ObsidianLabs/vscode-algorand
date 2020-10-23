@@ -147,8 +147,8 @@ export default class AlgoTransaction {
       case 'asset-opt-in':
         algoTxn = {
           type: 'axfer',
-          from: this.getAddress(params.to),
-          to: this.getAddress(params.to),
+          from: this.getAddress(params.from),
+          to: this.getAddress(params.from),
           assetIndex: params.assetId,
           note: params.note || undefined,
           lease: this.getLease(params.lease),

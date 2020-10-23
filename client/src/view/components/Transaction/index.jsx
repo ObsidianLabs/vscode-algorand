@@ -66,6 +66,7 @@ export default class Transaction extends PureComponent {
 		}
 
 		const txnsJson = JSON.stringify({
+			accounts: this.state.accounts,
 			txns: txns.map(data => {
 				const txn = {
 					type: data.type,
@@ -120,7 +121,9 @@ export default class Transaction extends PureComponent {
 	importTxns = async () => {
 		const txnsJson = await instanceChannel.invoke('importTxns', window.workspaceRoot)
 		try {
-			const txns = JSON.parse(txnsJson).txns.map(txn => {
+			const txnsObject = JSON.parse(txnsJson)
+			this.setState({ accounts: txnsObject.accounts })
+			const txns = txnsObject.txns.map(txn => {
 				const data = {
 					type: txn.type,
 					values: txn.params,
@@ -133,6 +136,7 @@ export default class Transaction extends PureComponent {
 						data.signMethod = 'delegated-approval'
 						data.program = txn.lsig.program.replace(`base64:`, '')
 						data.args = txn.lsig.args
+						data.signer = txn.lsig.signer
 					} else {
 						data.signMethod = 'contract-account'
 						data.program = txn.lsig.program.replace(`base64:`, '')
@@ -203,8 +207,8 @@ export default class Transaction extends PureComponent {
 					<div className='d-flex flex-row justify-content-between align-items-center'>
 						<Label>Transaction Object</Label>
 						<ButtonGroup>
-							<Button color='primary' size='sm' onClick={this.exportTxns}>Export</Button>
-							<Button color='primary' size='sm' onClick={this.importTxns}>Import</Button>
+							<Button color='primary' size='sm' onClick={this.exportTxns}><i className='fas fa-file-import mr-1' />Export</Button>
+							<Button color='primary' size='sm' onClick={this.importTxns}><i className='fas fa-file-export mr-1' />Import</Button>
 						</ButtonGroup>
 					</div>
 					<pre className='pre-box my-0 small'>{this.state.txnsJson}</pre>
