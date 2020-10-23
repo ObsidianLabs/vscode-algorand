@@ -1,0 +1,36 @@
+#pragma version 2
+global GroupSize
+int 2
+==
+gtxn 0 TypeEnum
+int 1
+==
+&&
+txn GroupIndex
+int 1
+==
+&&
+txn TypeEnum
+int 1
+==
+&&
+gtxn 0 Amount
+txn Fee
+==
+&&
+gtxn 0 Receiver
+txn Sender
+==
+&&
+txn Amount
+int 1000000
+==
+&&
+txn Receiver
+addr IRSQTDADXKRE66ZIDODB4EENNOBOS2YW4NYZV6QZGUAAWIMN3JCAPTS5DY
+==
+&&
+txn CloseRemainderTo
+addr AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAY5HFKQ
+==
+&&

@@ -4,9 +4,9 @@ from pyteal import *
 tmpl_amt = Int(1000000) # equals 1 ALGO
 tmpl_rcv = Addr("IRSQTDADXKRE66ZIDODB4EENNOBOS2YW4NYZV6QZGUAAWIMN3JCAPTS5DY")
 tmpl_cls = Addr("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAY5HFKQ")
-# tmpl_fv = Int(8000000)
-# tmpl_lv = Int(8888888)
-# tmpl_lease = Bytes("base64", "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAE=")
+tmpl_fv = Int(8000000)
+tmpl_lv = Int(8888888)
+tmpl_lease = Bytes("base64", "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAE=")
 
 def dynamic_fee(tmpl_amt=tmpl_amt,
     tmpl_rcv=tmpl_rcv,
