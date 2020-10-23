@@ -70,18 +70,18 @@ To be able to perform the signing process, you need to provide a `keys.json` fil
 ]
 ```
 
+When finished, click the *Push Transaction* button, confirm and send the transaction to the Algorand network.
+
 #### Algorand smart contract
 
 We provided an example project to demostrate how to use this extension to work on Algorand smart contract.
 
-1. Open the `example` as the project root folder;
+1. Open the `example` in VS Code as the project root folder;
 2. Open the file `main.py` and press `Cmd+Shift+B` to compile the PyTeal script to TEAL. A file of name `main.teal` will be generated;
 3. Open the file `main.teal` and press `Cmd+Shift+B` to compile the TEAL script;
 4. Open the *Algorand Panel* and start an Algorand node. Make sure the node has synced with the network;
 5. Import the transaction by selecting the file `txns/call_contract.json`;
 6. Click the *Push Transaction* button to push the transaction.
-
-When finished, click the *Push Transaction* button, confirm and send the transaction to the Algorand network.
 
 ## Develop the Extension
 
