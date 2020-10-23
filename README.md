@@ -21,6 +21,11 @@ This extension provides the following features. Please see the video recording f
 	- Support [regular payment](https://developer.algorand.org/docs/features/transactions/signatures/#multisignatures), [atomic transfers](https://developer.algorand.org/docs/features/atomic_transfers/), [multi-sig](https://developer.algorand.org/docs/features/transactions/signatures/#multisignatures), [ASA operations](https://developer.algorand.org/docs/features/asa/) and [key registration](https://developer.algorand.org/docs/features/transactions/#key-registration-transaction)
 	- Support stateless ASC executions for both [contract account](https://developer.algorand.org/docs/features/asc1/stateless/modes/#contract-account) and [delegated approval](https://developer.algorand.org/docs/features/asc1/stateless/modes/#delegated-approval)
 
+## Prerequisite
+
+- [VS Code](https://code.visualstudio.com/)
+- [Docker for Desktop](https://www.docker.com/products/docker-desktop) (this extension uses docker to run Algorand node)
+
 ## Installation
 
 Download the built extension in the [releases](https://github.com/ObsidianLabs/vscode-algorand/releases). Open the Extensions page in VS Code and select *Install from VSIX...*
