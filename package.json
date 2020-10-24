@@ -3,7 +3,7 @@
 	"displayName": "Algorand VS Code Extension",
 	"description": "Support for Algorand in VS Code",
 	"icon": "images/icon.png",
-	"version": "0.1.1",
+	"version": "0.1.2",
 	"license": "MIT",
 	"author": "Phil",
 	"publisher": "Phil",
