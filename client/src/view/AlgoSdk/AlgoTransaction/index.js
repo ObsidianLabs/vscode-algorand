@@ -66,7 +66,8 @@ export default class AlgoTransaction {
   }
 
   parseSingleTxn (txn) {
-    const { type, params, ...rest } = txn
+		const { type, params, ...rest } = txn
+		rest.lease = this.getLease(rest.lease)
     let algoTxn
     switch (type) {
       case 'pay':
@@ -83,64 +84,54 @@ export default class AlgoTransaction {
           to: this.getAddress(params.to),
           amount,
           closeRemainderTo: this.getAddress(params.closeRemainderTo),
-          note: params.note || undefined,
-          lease: this.getLease(params.lease),
           ...rest,
         }
         break;
       case 'asset-create':
         algoTxn = {
           type: 'acfg',
-          from: this.getAddress(params.from || params.manager),
-          note: params.note || undefined,
+          from: this.getAddress(params.from),
           assetTotal: params.total,
           assetDecimals: params.decimals,
           assetName: params.name,
           assetUnitName: params.unit,
           assetURL: params.url,
           assetMetadataHash: params.meta,
-          assetManager: this.getAddress(params.manager),
-          assetReserve: this.getAddress(params.reserve || params.manager),
-          assetFreeze: this.getAddress(params.freeze || params.manager),
-          assetClawback: this.getAddress(params.clawback || params.manager),
+          assetManager: this.getAddress(params.manager || params.from),
+          assetReserve: this.getAddress(params.reserve),
+          assetFreeze: this.getAddress(params.freeze),
+          assetClawback: this.getAddress(params.clawback),
           assetDefaultFrozen: params.defaultFrozen,
-          lease: this.getLease(params.lease),
           ...rest,
         }
         break;
       case 'asset-modify':
         algoTxn = {
           type: 'acfg',
-          assetIndex: params.assetId,
           from: this.getAddress(params.from),
-          note: params.note || undefined,
+          assetIndex: params.assetId,
           assetManager: this.getAddress(params.manager),
           assetReserve: this.getAddress(params.reserve),
           assetFreeze: this.getAddress(params.freeze),
           assetClawback: this.getAddress(params.clawback),
-          lease: this.getLease(params.lease),
           ...rest,
         }
         break
       case 'asset-freeze':
         algoTxn = {
           type: 'afrz',
-          assetIndex: params.assetId,
           from: this.getAddress(params.from),
-          note: params.note || undefined,
+          assetIndex: params.assetId,
           freezeAccount: this.getAddress(params.target),
           freezeState: params.state,
-          lease: this.getLease(params.lease),
           ...rest,
         }
         break
       case 'asset-destroy':
         algoTxn = {
           type: 'acfg',
-          assetIndex: params.assetId,
           from: this.getAddress(params.from),
-          note: params.note || undefined,
-          lease: this.getLease(params.lease),
+          assetIndex: params.assetId,
           ...rest,
         }
         break
@@ -150,8 +141,6 @@ export default class AlgoTransaction {
           from: this.getAddress(params.from),
           to: this.getAddress(params.from),
           assetIndex: params.assetId,
-          note: params.note || undefined,
-          lease: this.getLease(params.lease),
           ...rest,
         }
         break
@@ -163,9 +152,7 @@ export default class AlgoTransaction {
           amount: params.amount,
           assetIndex: params.assetId,
           closeRemainderTo: this.getAddress(params.closeRemainderTo),
-          assetRevocationTarget: this.getAddress(params.assetRevocationTarget),
-          note: params.note || undefined,
-          lease: this.getLease(params.lease),
+          assetRevocationTarget: this.getAddress(params.clawback),
           ...rest,
         }
         break
@@ -173,13 +160,11 @@ export default class AlgoTransaction {
         algoTxn = {
           type: 'keyreg',
           from: this.getAddress(params.from),
-          note: params.note || undefined,
           voteKey: this.getAddress(params.vote),
           selectionKey: this.getAddress(params.selection),
           voteFirst: params.first,
           voteLast: params.last,
           voteKeyDilution: params.dilution,
-          lease: this.getLease(params.lease),
           ...rest,
         }
         break

@@ -78,6 +78,9 @@ export default class Transaction extends PureComponent {
 				if (data.flatFee) {
 					txn.flatFee = data.flatFee
 				}
+				if (data.note) {
+					txn.note = data.note
+				}
 				if (data.lease) {
 					txn.lease = data.lease
 				}
@@ -129,6 +132,7 @@ export default class Transaction extends PureComponent {
 					values: txn.params,
 					fee: txn.fee,
 					flatFee: txn.flatFee,
+					note: txn.note,
 					lease: txn.lease,
 				}
 				if (txn.lsig) {

@@ -8,72 +8,111 @@ import {
 	Label,
 } from '@obsidians/ui-components'
 
+import pick from 'lodash/pick'
+
 const fieldsByType = {
 	pay: [
-		{ label: 'From', name: 'from' },
-		{ label: 'To', name: 'to' },
-		{ label: 'Amount', name: 'amount' },
-		{ label: 'Note', name: 'note' },
-		{ label: 'Close Remainder To', name: 'closeRemainderTo' },
+		{ label: 'From', name: 'from', tooltip: 'The address that sends the amount' },
+		{ label: 'To', name: 'to', tooltip: 'The address that receives the amount' },
+		{ label: 'Amount', name: 'amount', tooltip: 'The total amount to be sent in ALGO' },
+		{
+			label: 'Close Remainder To',
+			name: 'closeRemainderTo',
+			tooltip: 'When set, all remaining balance will be transferred to this address and the sender account will be closed'
+		},
 	],
 	'asset-create': [
-		{ label: 'From', name: 'from' },
-		{ label: 'Note', name: 'note' },
-		{ label: 'Asset Name', name: 'name' },
-		{ label: 'Asset Unit', name: 'unit' },
-		{ label: 'Asset Total', name: 'total' },
-		{ label: 'Asset Decimals', name: 'decimals' },
-		{ label: 'Asset URL', name: 'url' },
-		{ label: 'Asset Meta', name: 'meta' },
-		{ label: 'Asset Manager', name: 'manager' },
-		{ label: 'Asset Reserve', name: 'reserve' },
-		{ label: 'Asset Frozen', name: 'freeze' },
-		{ label: 'Asset Clawback', name: 'clawback' },
-		{ label: 'Asset Default Frozen', name: 'defaultFrozen' },
+		{ label: 'From', name: 'from', tooltip: 'The address that sends the transaction' },
+		{ label: 'Asset Name', name: 'name', tooltip: 'Name of the asset (e.g. Tether)' },
+		{ label: 'Asset Unit', name: 'unit', tooltip: 'Name of unit of the asset (e.g. USDT)' },
+		{ label: 'Asset Total', name: 'total', tooltip: 'Total number of the asset in base units' },
+		{ label: 'Asset Decimals', name: 'decimals', tooltip: 'Number of digits to use after the decimal point' },
+		{ label: 'Asset URL', name: 'url', tooltip: 'A URL where more info can be retrieved; max 32 bytes' },
+		{ label: 'Asset Meta', name: 'meta', tooltip: 'A 32-byte hash of some metadata that is relevant to your asset' },
+		{
+			label: 'Asset Manager',
+			name: 'manager',
+			placeholder: 'Default: From',
+			tooltip: 'An address that can manage the asset and destroy it.',
+		},
+		{
+			label: 'Asset Reserve',
+			name: 'reserve',
+			tooltip: 'An address that holds the non-minted units of the asset',
+		},
+		{
+			label: 'Asset Frozen',
+			name: 'freeze',
+			tooltip: 'An address that holds frozen asset. If empty, freezing is not permitted.',
+		},
+		{
+			label: 'Asset Clawback',
+			name: 'clawback',
+			tooltip: 'An address that can clawback holdings of this asset. If empty, clawback is not permitted.',
+		},
+		{ label: 'Asset Default Frozen', name: 'defaultFrozen', type: 'boolean' },
 	],
 	'asset-modify': [
-		{ label: 'From', name: 'from' },
-		{ label: 'Note', name: 'note' },
-		{ label: 'Asset ID', name: 'assetId' },
-		{ label: 'Asset Manager', name: 'manager' },
-		{ label: 'Asset Reserve', name: 'reserve' },
-		{ label: 'Asset Frozen', name: 'freeze' },
-		{ label: 'Asset Clawback', name: 'clawback' },
+		{ label: 'From', name: 'from', tooltip: `The address that sends the transaction; must be the assets's manager address` },
+		{ label: 'Asset ID', name: 'assetId', tooltip: 'ID of the asset' },
+		{
+			label: 'Asset Manager',
+			name: 'manager',
+			tooltip: 'An address that can manage the asset and destroy it.',
+		},
+		{
+			label: 'Asset Reserve',
+			name: 'reserve',
+			tooltip: 'An address that holds the non-minted units of the asset',
+		},
+		{
+			label: 'Asset Frozen',
+			name: 'freeze',
+			tooltip: 'An address that holds frozen asset. If empty, freezing is not permitted.',
+		},
+		{
+			label: 'Asset Clawback',
+			name: 'clawback',
+			tooltip: 'An address that can clawback holdings of this asset. If empty, clawback is not permitted.',
+		},
 	],
 	'asset-freeze': [
-		{ label: 'From', name: 'from' },
-		{ label: 'Note', name: 'note' },
-		{ label: 'Asset ID', name: 'assetId' },
-		{ label: 'Freeze Account', name: 'target' },
-		{ label: 'Freeze State', name: 'state' },
+		{ label: 'From', name: 'from', tooltip: `The address that sends the transaction; must be the asset's freeze address` },
+		{ label: 'Asset ID', name: 'assetId', tooltip: 'ID of the asset' },
+		{ label: 'Freeze Account', name: 'target', tooltip: 'The address whose asset will be frozen or unfrozen' },
+		{ label: 'Freeze State', name: 'state', type: 'boolean' },
 	],
 	'asset-destroy': [
-		{ label: 'From', name: 'from' },
-		{ label: 'Note', name: 'note' },
-		{ label: 'Asset ID', name: 'assetId' },
+		{ label: 'From', name: 'from', tooltip: `The address that sends the transaction; must be the assets's manager address` },
+		{ label: 'Asset ID', name: 'assetId', tooltip: 'ID of the asset' },
 	],
 	'asset-opt-in': [
-		{ label: 'From', name: 'from' },
-		{ label: 'Note', name: 'note' },
-		{ label: 'Asset ID', name: 'assetId' },
+		{ label: 'From', name: 'from', tooltip: 'The address that sends the transaction' },
+		{ label: 'Asset ID', name: 'assetId', tooltip: 'ID of the asset' },
 	],
 	'asset-transfer': [
-		{ label: 'From', name: 'from' },
-		{ label: 'To', name: 'to' },
-		{ label: 'Asset ID', name: 'assetId' },
-		{ label: 'Amount', name: 'amount' },
-		{ label: 'Close Remainder To', name: 'closeRemainderTo' },
-		{ label: 'Asset Revocation Target', name: 'assetRevocationTarget' },
-		{ label: 'Note', name: 'note' },
+		{ label: 'From', name: 'from', tooltip: `The address that sends the transaction; must be the asset's clawback address if Clawback Target is given` },
+		{ label: 'To', name: 'to', tooltip: 'The address that receives the asset' },
+		{ label: 'Asset ID', name: 'assetId', tooltip: 'ID of the asset' },
+    { label: 'Amount', name: 'amount', tooltip: 'The total amount to be sent in base units' },
+    {
+			label: 'Close Remainder To',
+			name: 'closeRemainderTo',
+			tooltip: 'When set, all remaining asset balance will be transferred to this address'
+		},
+		{
+      label: 'Clawback Target',
+      name: 'clawback',
+      tooltip: `Indicates a clawback if set. This value is the address from which assets will be withdrawn.`
+    },
 	],
 	'keyreg': [
-		{ label: 'From', name: 'from' },
-		{ label: 'Note', name: 'note' },
-		{ label: 'Vote Key', name: 'vote' },
-		{ label: 'Selection Key', name: 'selection' },
-		{ label: 'Vote First', name: 'first' },
-		{ label: 'Vote Last', name: 'last' },
-		{ label: 'Vote Key Dilution', name: 'dilution' },
+		{ label: 'From', name: 'from', tooltip: 'The address that sends the transaction' },
+		{ label: 'Vote Key', name: 'vote', tooltip: 'The root participation public key' },
+		{ label: 'Selection Key', name: 'selection', tooltip: 'The VRF public key' },
+		{ label: 'Vote First', name: 'first', tooltip: 'The first round that the participation key is valid' },
+		{ label: 'Vote Last', name: 'last', tooltip: 'The last round that the participation key is valid' },
+		{ label: 'Vote Key Dilution', name: 'dilution', tooltip: 'The dilution for the 2-level participation key' },
 	],
 }
 
@@ -89,6 +128,7 @@ export default class TransactionModal extends PureComponent {
 			signers: '',
 			fee: '',
 			flatFee: false,
+			note: undefined,
 			lease: '',
 		}
 	}
@@ -104,6 +144,7 @@ export default class TransactionModal extends PureComponent {
 				program: data.program,
 				fee: data.fee,
 				flatFee: data.flatFee,
+				note: data.note,
 				lease: data.lease,
 			})
 		} else {
@@ -115,6 +156,7 @@ export default class TransactionModal extends PureComponent {
 				program: '',
 				fee: '',
 				flatFee: false,
+				note: undefined,
 				lease: '',
 			})
 		}
@@ -123,9 +165,10 @@ export default class TransactionModal extends PureComponent {
 	}
 
 	onConfirm = () => {
+		const fieldNames = fieldsByType[this.state.type].map(f => f.name)
 		this.onResolve({
 			...this.state,
-			values: { ...this.state.values }
+			values: pick(this.state.values, fieldNames)
 		})
 		this.modal.current.closeModal()
 	}
@@ -135,7 +178,7 @@ export default class TransactionModal extends PureComponent {
 	}
 
 	renderTransactionForm = fields => {
-		return fields.map(({ label, name }, index) => {
+		return fields.map(({ label, name, tooltip, placeholder, type }) => {
 			const value = this.state.values[name]
 			const onChange = value => {
 				this.setState({ values: {
@@ -143,10 +186,25 @@ export default class TransactionModal extends PureComponent {
 					[name]: value,
 				}})
 			}
+			if (type) {
+				return (
+					<CustomInput
+						key={`field-${name}`}
+						id={`field-${name}`}
+						type='checkbox'
+						label={label}
+						className='small font-weight-bold'
+						checked={!!value}
+						onChange={event => onChange(event.target.checked)}
+					/>
+				)
+			}
 			return (
 				<DebouncedFormGroup
-					size='sm'
 					key={`field-${name}`}
+					size='sm'
+					tooltip={tooltip}
+					placeholder={placeholder}
 					label={label}
 					value={value}
 					onChange={onChange}
@@ -162,7 +220,7 @@ export default class TransactionModal extends PureComponent {
 					key='signer'
 					size='sm'
 					label='Signer'
-					placeholder={`Default: ${this.state.values.from || '{From}'}`}
+					placeholder={`Default: ${this.state.values.from || 'From'}`}
 					value={this.state.signer}
 					onChange={signer => this.setState({ signer })}
 				/>
@@ -234,7 +292,8 @@ export default class TransactionModal extends PureComponent {
 				<Label className='mt-2 mb-0'>Other Parameters</Label>
 				<DebouncedFormGroup
 					size='sm'
-					label='Fee'
+					label='Fee (in micro ALGO)'
+					tooltip='Transaction fee paid by the sender; min 1000'
 					placeholder='Default: 1000'
 					value={this.state.fee}
 					onChange={fee => this.setState({ fee })}
@@ -250,7 +309,16 @@ export default class TransactionModal extends PureComponent {
 				<DebouncedFormGroup
 					size='sm'
 					formGroupClassName='mt-1'
-					label='Lease'
+					label='Note'
+					tooltip='Any message to be included in the transaction and up to 1000 bytes'
+					value={this.state.note}
+					onChange={note => this.setState({ note })}
+				/>
+				<DebouncedFormGroup
+					size='sm'
+					formGroupClassName='mt-1'
+          label='Lease'
+          tooltip='If set, it requires the (from, lease) pair to be unique until the LastValid round passes.'
 					value={this.state.lease}
 					onChange={lease => this.setState({ lease })}
 				/>
