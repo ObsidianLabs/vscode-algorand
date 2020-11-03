@@ -71,11 +71,11 @@ export default class AlgoTransaction {
     let algoTxn
     switch (type) {
       case 'pay':
-        const amount = Number(params.amount) * 1000000
+        const amount = parseInt(params.amount)
         if (params.to && !amount) {
-          throw new Error(`Invalid amount value: ${params.amount}`)
+          throw new Error(`Amount cannot be empty or zero`)
         }
-        if (amount !== Math.floor(amount)) {
+        if (params.amount !== amount.toString()) {
           throw new Error(`Invalid amount value: ${params.amount}`)
         }
         algoTxn = {

@@ -14,7 +14,7 @@ const fieldsByType = {
 	pay: [
 		{ label: 'From', name: 'from', tooltip: 'The address that sends the amount' },
 		{ label: 'To', name: 'to', tooltip: 'The address that receives the amount' },
-		{ label: 'Amount', name: 'amount', tooltip: 'The total amount to be sent in ALGO' },
+		{ label: 'Amount (in micro ALGO)', name: 'amount', tooltip: 'The total amount to be sent' },
 		{
 			label: 'Close Remainder To',
 			name: 'closeRemainderTo',

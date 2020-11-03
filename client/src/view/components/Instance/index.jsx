@@ -90,7 +90,7 @@ export default class InstanceList extends PureComponent {
   render () {
     return (
 			<Card
-				title={`Algorand Instances`}
+				title='Algorand Instances'
 				right={
 					<CreateInstanceButton
 						className='ml-2'
