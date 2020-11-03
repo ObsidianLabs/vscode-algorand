@@ -11,7 +11,7 @@ This is a VS Code extension for the [Algorand Blockchain](https://www.algorand.c
 
 ### Installation
 
-Download the built extension in the [releases](https://github.com/ObsidianLabs/vscode-algorand/releases). Open the Extensions page in VS Code and select *Install from VSIX...*
+[Install the extension](https://marketplace.visualstudio.com/items?itemName=obsidians.vscode-algorand) from the VS Code Marketplace. You can also download pre-release versions from [releases](https://github.com/ObsidianLabs/vscode-algorand/releases) and install through *VS Code / Extensions / Install from VSIX...*
 
 ### Features
 

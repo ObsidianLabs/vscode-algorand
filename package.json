@@ -5,8 +5,8 @@
 	"icon": "images/icon.png",
 	"version": "0.1.2",
 	"license": "MIT",
-	"author": "Phil",
-	"publisher": "Phil",
+	"author": "obsidians",
+	"publisher": "obsidians",
 	"repository": {
 		"type": "git",
 		"url": "https://github.com/ObsidianLabs/vscode-algorand"

@@ -3,8 +3,8 @@
 	"description": "Language server for Algorand vscode extension.",
 	"version": "0.1.0",
 	"license": "MIT",
-	"author": "Phil",
-	"publisher": "Phil",
+	"author": "obsidians",
+	"publisher": "obsidians",
 	"repository": {
 		"type": "git",
 		"url": "https://github.com/ObsidianLabs/algorand-teal"
