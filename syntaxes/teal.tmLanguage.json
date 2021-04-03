@@ -1,119 +1,136 @@
 {
-	"$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
-	"name": "Algorand TEAL",
-	"patterns": [
+  "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+  "name": "Algorand TEAL",
+  "patterns": [
     {
-      "name": "comment.line.teal",
-      "match": "\\/\\/.*?$"
+      "include": "#invalid"
     },
-    { "include": "#keywords" },
-    { "include": "#branch" },
-    { "include": "#branch-target" },
-    { "include": "#addr" },
-    { "include": "#base32" },
-    { "include": "#base64" },
-		{ "include": "#address-string" }
-	],
-	"repository": {
-		"keywords": {
-			"patterns": [
+    {
+      "include": "#comments"
+    },
+    {
+      "include": "#strings"
+    },
+    {
+      "include": "#literals"
+    },
+    {
+      "include": "#labels"
+    },
+    {
+      "include": "#keywords"
+    },
+    {
+      "include": "#pragmas"
+    }
+  ],
+  "repository": {
+    "comments": {
+      "name": "comment.line.double-slash.teal",
+      "begin": "//",
+      "end": "$"
+    },
+    "invalid": {
+      "patterns": [
         {
-          "name": "keyword.function.teal",
-          "match": "\\b(int|byte|intcblock|intc|intc_0|intc_1|intc_2|intc_3|bytecblock|bytec|bytec_0|bytec_1|bytec_2|bytec_3|arg|arg_0|arg_1|arg_2|arg_3|txn|txna|gtxn|gtxna|global)\\b"
+          "name": "invalid.illegal.teal",
+          "match": "^\\s+.*$"
+        }
+      ]
+    },
+    "keywords": {
+      "patterns": [
+        {
+          "match": "\\b(base64|b64|base32|b32)(?:\\(|\\s+)([a-zA-Z0-9\\+\\/\\=]+)(?:\\)|\\s?|$)",
+          "captures": {
+            "1": {
+              "name": "support.class.teal"
+            },
+            "2": {
+              "name": "string.quoted.triple.teal"
+            }
+          }
         },
         {
-          "name": "entity.name.function.teal",
-          "match": "\\b(sha256|keccak256|sha512_256|ed25519verify|len|itob|btoi|mulw)\\b"
-				},
-				{
-          "name": "entity.name.function.teal",
-          "match": "\\b(Sender|Fee|FirstValid|FirstValidTime|LastValid|Note|Lease|Receiver|Amount|CloseRemainderTo|VotePK|VoteFirst|VoteLast|VoteKeyDilution|Type|TypeEnum|XferAsset|AssetAmount|AssetSender|AssetReceiver|AssetCloseTo|GroupIndex|TxID|ApplicationID|OnCompletion|ApplicationArgs|NumAppArgs|Accounts|NumAccounts|ApprovalProgram|ClearStateProgram|RekeyTo|ConfigAsset|ConfigAssetTotal|ConfigAssetDecimals|ConfigAssetDefaultFrozen|ConfigAssetUnitName|ConfigAssetName|ConfigAssetURL|ConfigAssetMetadataHash|ConfigAssetManager|ConfigAssetReserve|ConfigAssetFreeze|ConfigAssetClawback|FreezeAsset|FreezeAssetAccount|FreezeAssetFrozen)\\b"
-				},
-				{
-          "name": "entity.name.function.teal",
-          "match": "\\b(MinTxnFee|MinBalance|MaxTxnLife|ZeroAddress|GroupSize|LogicSigVersion|Round|LatestTimestamp|CurrentApplicationID)\\b"
-				},
-				{
-					"name": "support.function.teal",
-					"match": "\\b(load|store|pop|dup)\\b"
-				},
+          "match": "^(addr)\\s+([A-Z2-7\\=]+)",
+          "captures": {
+            "1": {
+              "name": "keyword.other.teal"
+            },
+            "2": {
+              "name": "string.unquoted.teal"
+            }
+          }
+        },
+        {
+          "name": "keyword.operator.teal",
+          "match": "^(sha256|keccak256|sha512_256|ed25519verify|\\+|\\-|/|\\*|\\\u003c|\\\u003e|\\\u003c\\=|\\\u003e\\=|\u0026\u0026|\\|\\||\\=\\=|\\!\\=|\\!|len|itob|btoi|%|\\||\u0026|\\^|\\~|mulw|addw|getbit|setbit|getbyte|setbyte|concat|substring|substring3)\\b"
+        },
+        {
+          "name": "keyword.other.teal",
+          "match": "^(int|byte|addr|intcblock|intc|intc_0|intc_1|intc_2|intc_3|pushint|bytecblock|bytec|bytec_0|bytec_1|bytec_2|bytec_3|pushbytes|arg|arg_0|arg_1|arg_2|arg_3|txn|gtxn|txna|gtxna|gtxns|gtxnsa|global|load|store)\\b"
+        },
         {
           "name": "keyword.control.teal",
-          "match": "\\b(err)\\b"
-				},
-				{
+          "match": "^(err|bnz|bz|b|return|pop|dup|dup2|dig|swap|select|assert)\\b"
+        },
+        {
+          "name": "keyword.other.unit.teal",
+          "match": "^(balance|min_balance|app_opted_in|app_local_get|app_local_get_ex|app_global_get|app_global_get_ex|app_local_put|app_global_put|app_local_del|app_global_del|asset_holding_get|asset_params_get)\\b"
+        }
+      ]
+    },
+    "labels": {
+      "patterns": [
+        {
+          "name": "support.variable.teal",
+          "match": "^\\w+:.*$"
+        },
+        {
+          "match": "\\b(?\u003c=b|bz|bnz)\\s+(\\w+)\\b",
+          "captures": {
+            "1": {
+              "name": "support.variable.teal"
+            }
+          }
+        }
+      ]
+    },
+    "literals": {
+      "patterns": [
+        {
           "name": "constant.numeric.teal",
-          "match": "\\b(0|[1-9][0-9]*)\\b"
-				},
-				{
-          "name": "keyword.operator.teal",
-          "match": "\\+|\\-|\\*|\\/|<=|>=|<|>|&&|\\|\\||==|!=|!|%|\\||&|\\^|~"
-        }
-      ]
-    },
-    "branch": {
-      "begin": "bnz\\s+",
-      "end": "$",
-      "beginCaptures": {
-        "0": { "name": "keyword.control.teal" }
-      },
-			"patterns": [
+          "match": "\\b([0-9]+)\\b"
+        },
         {
-          "name": "variable.parameter",
-          "match": "[a-zA-Z_][a-zA-Z0-9_]*"
-        }
-      ]
-    },
-    "branch-target": {
-			"patterns": [
+          "name": "constant.numeric.teal",
+          "match": "\\b(?\u003c=int\\s+)(0x[0-9]+)\\b"
+        },
         {
-          "name": "variable.parameter",
-          "match": "[a-zA-Z_][a-zA-Z0-9_]*:"
+          "name": "string.quoted.double.teal",
+          "match": "\\b(?\u003c=byte\\s+)(0x[0-9]+)\\b"
+        },
+        {
+          "name": "variable.parameter.teal",
+          "match": "\\b(Sender|Fee|FirstValid|FirstValidTime|LastValid|Note|Lease|Receiver|Amount|CloseRemainderTo|VotePK|SelectionPK|VoteFirst|VoteLast|VoteKeyDilution|Type|TypeEnum|XferAsset|AssetAmount|AssetSender|AssetReceiver|AssetCloseTo|GroupIndex|TxID|ApplicationID|OnCompletion|ApplicationArgs|NumAppArgs|Accounts|NumAccounts|ApprovalProgram|ClearStateProgram|RekeyTo|ConfigAsset|ConfigAssetTotal|ConfigAssetDecimals|ConfigAssetDefaultFrozen|ConfigAssetUnitName|ConfigAssetName|ConfigAssetURL|ConfigAssetMetadataHash|ConfigAssetManager|ConfigAssetReserve|ConfigAssetFreeze|ConfigAssetClawback|FreezeAsset|FreezeAssetAccount|FreezeAssetFrozen|Assets|NumAssets|Applications|NumApplications|GlobalNumUint|GlobalNumByteSlice|LocalNumUint|LocalNumByteSlice|MinTxnFee|MinBalance|MaxTxnLife|ZeroAddress|GroupSize|LogicSigVersion|Round|LatestTimestamp|CurrentApplicationID|CreatorAddress|AssetBalance|AssetFrozen|AssetTotal|AssetDecimals|AssetDefaultFrozen|AssetUnitName|AssetName|AssetURL|AssetMetadataHash|AssetManager|AssetReserve|AssetFreeze|AssetClawback|NoOp|OptIn|CloseOut|ClearState|UpdateApplication|DeleteApplication)\\b"
         }
       ]
     },
-    "addr": {
-      "begin": "addr\\s+",
-      "end": "$",
-      "beginCaptures": {
-        "0": { "name": "entity.name.type.teal" }
-      },
-      "patterns": [{ "include": "#address-string" }]
+    "pragmas": {
+      "name": "support.function.teal",
+      "match": "^#pragma\\b.*$"
     },
-    "address-string": {
-      "patterns": [{
-        "name": "string.addr.teal",
-        "match": "[0-9A-Z]{58}"
-      }]
-    },
-    "base32": {
-      "begin": "(base32|bs32)(\\s+|\\()",
-      "end": "$",
-      "beginCaptures": {
-        "0": { "name": "entity.name.type.teal" }
-      },
-      "patterns": [{ "include": "#base32-string" }]
-    },
-    "base32-string": {
-      "patterns": [{
-        "name": "string.base32.teal",
-        "match": "[A-Z2-7]*"
-      }]
-    },
-    "base64": {
-      "begin": "(base64|bs64)(\\s+|\\()",
-      "end": "$",
-      "beginCaptures": {
-        "0": { "name": "entity.name.type.teal" }
-      },
-      "patterns": [{ "include": "#base64-string" }]
-    },
-    "base64-string": {
-      "patterns": [{
-        "name": "string.base64.teal",
-        "match": "[a-zA-Z0-9\\/\\+]*={0,2}"
-      }]
+    "strings": {
+      "name": "string.quoted.double.teal",
+      "begin": "\"",
+      "end": "\"",
+      "patterns": [
+        {
+          "name": "constant.character.escape.teal",
+          "match": "\\\\(x[0-9A-Fa-f]{2}|.|$)"
+        }
+      ]
     }
-	},
-	"scopeName": "source.teal"
+  },
+  "scopeName": "source.teal"
 }
