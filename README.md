@@ -15,9 +15,9 @@ This is a VS Code extension for the [Algorand Blockchain](https://www.algorand.c
 
 ### Future Features
 
-- Sandbox support (WIP by [@emg110](https://github.com/emg110), Coming soon!)
-- Working with AlgoExplorer API (WIP by [@emg110](https://github.com/emg110), Coming soon!)
-- Teal Remote Debug Control (TealDBG & CDT), SandBox or any physical accessible remote Algorand node (WIP by [@emg110](https://github.com/emg110), Coming soon!)
+- Sandbox support (WIP! Coming soon!)
+- Working with AlgoExplorer API (WIP! Coming soon!)
+- Teal Remote Debug Control (TealDBG & CDT), SandBox or any physical accessible remote Algorand node (WIP! Coming soon!)
 
 #### TEAL language support
 
@@ -29,9 +29,7 @@ This is a VS Code extension for the [Algorand Blockchain](https://www.algorand.c
 #### GitHub TEAL introduction
 
 - TEAL 4 grammars are intoruced to GitHub based on this PR from [@emg110](https://github.com/emg110)
-- TEAL extensions are intoruced to GitHub by [@emg110](https://github.com/emg110) and therefore .teal is ALgorand branded forever on GitHub.
-- Auto-complete
-- TEAL 4 syntax highlight & Auto-complete support added (by [@emg110](https://github.com/emg110))
+
 
 #### TEAL & PyTeal compiler integration
 
