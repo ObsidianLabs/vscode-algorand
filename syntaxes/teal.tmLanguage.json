@@ -64,7 +64,7 @@
         },
         {
           "name": "keyword.operator.teal",
-          "match": "^(sha256|keccak256|sha512_256|ed25519verify|\\+|\\-|/|\\*|\\\u003c|\\\u003e|\\\u003c\\=|\\\u003e\\=|\u0026\u0026|\\|\\||\\=\\=|\\!\\=|\\!|len|itob|btoi|%|\\||\u0026|\\^|\\~|mulw|addw|divmodw|getbit|setbit|getbyte|setbyte|concat|substring|substring3|bitlen|b+|b-|b*|b/|b%|b<|b>|b^|b&|b~|bzero)\\b"
+          "match": "^(sha256|keccak256|sha512_256|ed25519verify|\\+|\\-|/|\\*|\\\u003c|\\\u003e|\\\u003c\\=|\\\u003e\\=|\u0026\u0026|\\|\\||\\=\\=|\\!\\=|\\!|len|itob|btoi|%|\\||\u0026|\\^|\\~|mulw|addw|divmodw|getbit|setbit|getbyte|setbyte|concat|substring|substring3|bitlen|b+|b==|b!=|b||b-|b*|b/|b%|b<|b>|b^|b&|b~|bzero|shl|shr|sqrt|exp|expw)\\b"
         },
         {
           "name": "keyword.other.teal",
