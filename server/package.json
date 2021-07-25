@@ -1,20 +1,20 @@
 {
 	"name": "vscode-algorand-server",
 	"description": "Language server for Algorand vscode extension.",
-	"version": "0.1.0",
+	"version": "0.1.1",
 	"license": "MIT",
 	"author": "obsidians",
 	"publisher": "obsidians",
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/ObsidianLabs/algorand-teal"
+		"url": "https://github.com/ObsidianLabs/vscode-algorand/server"
 	},
 	"engines": {
 		"node": "*"
 	},
 	"dependencies": {
-		"vscode-languageserver": "^6.1.1",
-		"vscode-languageserver-textdocument": "^1.0.1"
+		"vscode-languageserver": "^7.0.0",
+		"vscode-languageserver-textdocument": ""
 	},
 	"scripts": {}
 }

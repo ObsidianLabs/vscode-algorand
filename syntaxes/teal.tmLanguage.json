@@ -18,29 +18,45 @@
 		"keywords": {
 			"patterns": [
         {
-          "name": "keyword.function.teal",
-          "match": "\\b(int|byte|intcblock|intc|intc_0|intc_1|intc_2|intc_3|bytecblock|bytec|bytec_0|bytec_1|bytec_2|bytec_3|arg|arg_0|arg_1|arg_2|arg_3|txn|txna|gtxn|gtxna|global)\\b"
+          "name": "support.function.teal",
+          "match": "\\b(int|byte|addr|intcblock|intc|intc_0|intc_1|intc_2|intc_3|bytecblock|bytec|bytec_0|bytec_1|bytec_2|bytec_3)\\b"
         },
         {
           "name": "entity.name.function.teal",
-          "match": "\\b(sha256|keccak256|sha512_256|ed25519verify|len|itob|btoi|mulw)\\b"
+          "match": "\\b(sha256|keccak256|sha512_256|ed25519verify|len|itob|btoi|mulw|addw|bitlen)\\b"
 				},
 				{
-          "name": "entity.name.function.teal",
-          "match": "\\b(Sender|Fee|FirstValid|FirstValidTime|LastValid|Note|Lease|Receiver|Amount|CloseRemainderTo|VotePK|VoteFirst|VoteLast|VoteKeyDilution|Type|TypeEnum|XferAsset|AssetAmount|AssetSender|AssetReceiver|AssetCloseTo|GroupIndex|TxID|ApplicationID|OnCompletion|ApplicationArgs|NumAppArgs|Accounts|NumAccounts|ApprovalProgram|ClearStateProgram|RekeyTo|ConfigAsset|ConfigAssetTotal|ConfigAssetDecimals|ConfigAssetDefaultFrozen|ConfigAssetUnitName|ConfigAssetName|ConfigAssetURL|ConfigAssetMetadataHash|ConfigAssetManager|ConfigAssetReserve|ConfigAssetFreeze|ConfigAssetClawback|FreezeAsset|FreezeAssetAccount|FreezeAssetFrozen)\\b"
+          "name": "constant.teal",
+          "match": "\\b(Sender|Fee|FirstValid|FirstValidTime|LastValid|Note|Lease|Receiver|Amount|CloseRemainderTo|VotePK|SelectionPK|VoteFirst|VoteLast|VoteKeyDilution|Type|TypeEnum|XferAsset|AssetAmount|AssetSender|AssetReceiver|AssetCloseTo|GroupIndex|TxID|ApplicationID|OnCompletion|ApplicationArgs|NumAppArgs|Accounts|NumAccounts|ApprovalProgram|ClearStateProgram|RekeyTo|ConfigAsset|ConfigAssetTotal|ConfigAssetDecimals|ConfigAssetDefaultFrozen|ConfigAssetUnitName|ConfigAssetName|ConfigAssetURL|ConfigAssetMetadataHash|ConfigAssetManager|ConfigAssetReserve|ConfigAssetFreeze|ConfigAssetClawback|FreezeAsset|FreezeAssetAccount|FreezeAssetFrozen|Assets|NumAssets|Applications|NumApplications|GlobalNumUint|GlobalNumByteSlice|LocalNumUint|LocalNumByteSlice|ExtraProgramPages)\\b"
+				},
+        {
+          "name": "entity.other.attribute-name.teal",
+          "match": "\\b(AssetTotal|AssetDecimals|AssetDefaultFrozen|AssetUnitName|AssetName|AssetURL|AssetMetadataHash|AssetManager|AssetReserve|AssetFreeze|AssetClawback)\\b"
 				},
 				{
-          "name": "entity.name.function.teal",
-          "match": "\\b(MinTxnFee|MinBalance|MaxTxnLife|ZeroAddress|GroupSize|LogicSigVersion|Round|LatestTimestamp|CurrentApplicationID)\\b"
+          "name": "entity.other.attribute-name.teal",
+          "match": "\\b(MinTxnFee|MinBalance|MaxTxnLife|ZeroAddress|GroupSize|LogicSigVersion|Round|LatestTimestamp|CurrentApplicationID|CreatorAddress)\\b"
 				},
 				{
-					"name": "support.function.teal",
-					"match": "\\b(load|store|pop|dup)\\b"
+					"name": "entity.name.function.teal",
+					"match": "\\b(bzero|load|store|pop|dup|dup2|dig|swap|select|concat|substring|substring3|shl|shr|divmodw|exp|expw|sqrt|log2)\\b"
 				},
         {
           "name": "keyword.control.teal",
-          "match": "\\b(err)\\b"
+          "match": "\\b(b|err|return|assert|retsub|callsub|balance|app_opted_in|app_local_get|app_local_get_ex|app_local_put|app_global_get|app_global_get_ex|app_global_put|app_local_del|app_global_del|app_global_del|asset_holding_get|asset_params_get)\\b"
 				},
+        {
+					"name": "support.function.teal",
+					"match": "\\b(pushbytes|pushint|getbit|setbit|getbyte|setbyte|arg|arg_0|arg_1|arg_2|arg_3|txn|gtxn|txna|gtxna|gtxns|gtxnsa|global|load|store|gload|gloads|gaid|gaids)\\b"
+				},
+        {
+					"name": "entity.name.type.teal",
+					"match": "\\b(unknown|pay|keyreg|acfg|axfer|afrz|appl)\\b"
+				},
+        {
+					"name": "entity.name.type.teal",
+					"match": "\\b(NoOp|OptIn|CloseOut|ClearState|UpdateApplication|DeleteApplication)\\b"
+				},       
 				{
           "name": "constant.numeric.teal",
           "match": "\\b(0|[1-9][0-9]*)\\b"
@@ -52,7 +68,7 @@
       ]
     },
     "branch": {
-      "begin": "bnz\\s+",
+      "begin": "bnz|bz\\s+",
       "end": "$",
       "beginCaptures": {
         "0": { "name": "keyword.control.teal" }
