@@ -24,7 +24,7 @@ This is a VS Code extension for the [Algorand Blockchain](https://www.algorand.c
 - TEAL syntax highlight
 - Hover information
 - Auto-complete
-- TEAL 4 syntax highlight & Auto-complete support added (by [@emg110](https://github.com/emg110))
+- TEAL 4 syntax highlight & Auto-complete updates support added by [@emg110](https://github.com/emg110), heavily based on TEAL 3 update PR by [@barnjamin](https://github.com/barnjamin/vscode-algorand)
 
 
 #### TEAL & PyTeal compiler integration
