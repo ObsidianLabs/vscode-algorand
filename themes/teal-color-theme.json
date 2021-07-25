@@ -1,0 +1,11 @@
+{
+    "editor.tokenColorCustomizations": {
+      "invalid": "#FF0000",
+      "comments": "#04cfa9",
+      "strings": "#fcffff",
+      "literals": "#faee02",
+      "labels": "#cf63eb",
+      "keywords": "#fa9702",
+      "pragmas": "#02eefa",
+    }
+  }
