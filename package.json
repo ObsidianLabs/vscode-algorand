@@ -1,7 +1,7 @@
 {
 	"name": "vscode-algorand",
 	"displayName": "Algorand VS Code Extension",
-	"description": "Support for Algorand in VS Code",
+	"description": "Support for Algorand Technology Platform including TEAL language and PyTeal (python teal extension) in VS Code",
 	"icon": "images/icon.png",
 	"version": "0.1.2",
 	"license": "MIT",

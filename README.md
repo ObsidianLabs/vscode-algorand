@@ -13,13 +13,19 @@ This is a VS Code extension for the [Algorand Blockchain](https://www.algorand.c
 
 [Install the extension](https://marketplace.visualstudio.com/items?itemName=obsidians.vscode-algorand) from the VS Code Marketplace. You can also download pre-release versions from [releases](https://github.com/ObsidianLabs/vscode-algorand/releases) and install through *VS Code / Extensions / Install from VSIX...*
 
-### Features
+### Future Features
+
+- Sandbox support (WIP! Coming soon!)
+- Working with AlgoExplorer API (WIP! Coming soon!)
+- Teal Remote Debug Control (TealDBG & CDT), SandBox or any physical accessible remote Algorand node (WIP! Coming soon!)
 
 #### TEAL language support
 
 - TEAL syntax highlight
 - Hover information
 - Auto-complete
+- TEAL 4 syntax highlight & Auto-complete updates support added by [@emg110](https://github.com/emg110), heavily based on TEAL 3 update PR by [@barnjamin](https://github.com/barnjamin/vscode-algorand)
+
 
 #### TEAL & PyTeal compiler integration
 
@@ -44,8 +50,9 @@ You can use the Algorand Panel to construct transactions with a user interface. 
 	- [regular payment](https://developer.algorand.org/docs/features/transactions/signatures/#multisignatures)
 	- [ASA operations](https://developer.algorand.org/docs/features/asa/) including *create*, *opt in*, *transfer*, *modify*, *freeze* and *destroy*
 	- [key registration](https://developer.algorand.org/docs/features/transactions/#key-registration-transaction)
-- [Atomic Transfers](https://developer.algorand.org/docs/features/atomic_transfers/)
-- [Multi-sig](https://developer.algorand.org/docs/features/transactions/signatures/#multisignatures)
+	- [Atomic Transfers](https://developer.algorand.org/docs/features/atomic_transfers/)
+	- [Multi-sig](https://developer.algorand.org/docs/features/transactions/signatures/#multisignatures)
+	
 - Stateless Algorand Smart Contract (ASC) executions for both
 	- [contract account](https://developer.algorand.org/docs/features/asc1/stateless/modes/#contract-account)
 	- [delegated approval](https://developer.algorand.org/docs/features/asc1/stateless/modes/#delegated-approval)
