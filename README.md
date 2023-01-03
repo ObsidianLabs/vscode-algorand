@@ -36,6 +36,8 @@ Algorand Panel is a dedicated interface for Algorand-related operations, accessi
 - **Start a local node** - Just click the *Start* button
 - **Display node logs** - Shown in VS Code terminal
 
+NOTE: When you start a local node, may you need to sync node network, you can use fast catchup, please reference the official document: https://developer.algorand.org/docs/run-a-node/setup/install/#sync-node-network-using-fast-catchup.
+
 #### Algorand transactions
 
 You can use the Algorand Panel to construct transactions with a user interface. It supports
@@ -49,6 +51,8 @@ You can use the Algorand Panel to construct transactions with a user interface. 
 - Stateless Algorand Smart Contract (ASC) executions for both
 	- [contract account](https://developer.algorand.org/docs/features/asc1/stateless/modes/#contract-account)
 	- [delegated approval](https://developer.algorand.org/docs/features/asc1/stateless/modes/#delegated-approval)
+
+There are some examples of transaction in the `example/txns` folder, you can import it and try to push transactions in the Algorand Panel.
 
 Before using the feature, please make sure you have successfully started an Algorand node.
 
