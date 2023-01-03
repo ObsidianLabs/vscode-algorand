@@ -233,5 +233,80 @@ export default [
 		"name": "FreezeAssetFrozen",
 		"type": "uint64",
 		"notes": "The new frozen value, 0 or 1. LogicSigVersion >= 2."
+	},
+	{
+		"name": "NumAssets",
+		"type": "uint64",
+		"notes": "Number of Assets"
+	},
+	{
+		"name": "NumApplications",
+		"type": "uint64",
+		"notes": "Number of Applications"
+	},
+	{
+		"name": "GlobalNumUint",
+		"type": "uint64",
+		"notes": "Number of global state integers in ApplicationCall",
+	},
+	{
+		"name": "GlobalNumByteSlice",
+		"type": "uint64",
+		"notes": "Number of global state byteslices in ApplicationCall",
+	},
+	{
+		"name": "LocalNumUint",
+		"type": "uint64",
+		"notes": "Number of local state integers in ApplicationCall",
+	},
+	{
+		"name": "LocalNumByteSlice",
+		"type": "uint64",
+		"notes": "Number of local state byteslices in ApplicationCall"
+	},
+	{
+		"name": "ExtraProgramPages",
+		"type": "uint64",
+		"notes": "Number of additional pages for each of the application's approval and clear state programs. An ExtraProgramPages of 1 means 2048 more total bytes, or 1024 for each program."
+	},
+	{
+		"name": "Nonparticipation",
+		"type": "uint64",
+		"notes": "Marks an account nonparticipating for rewards"
+	},
+	{
+		"name": "NumLogs",
+		"type": "uint64",
+		"notes": "umber of Logs (only with itxn in v5). Application mode only"
+	},
+	{
+		"name": "CreatedAssetID",
+		"type": "uint64",
+		"notes": "Asset ID allocated by the creation of an ASA (only with itxn in v5). Application mode only"
+	},
+	{
+		"name": "CreatedApplicationID",
+		"type": "uint64",
+		"notes": "ApplicationID allocated by the creation of an application (only with itxn in v5). Application mode only"
+	},
+	{
+		"name": "LastLog",
+		"type": "[]byte",
+		"notes": "The last message emitted. Empty bytes if none were emitted. Application mode only"
+	},
+	{
+		"name": "StateProofPK",
+		"type": "[]byte",
+		"notes": "64 byte state proof public key"
+	},
+	{
+		"name": "NumApprovalProgramPages",
+		"type": "uint64",
+		"notes": "Number of Approval Program pages"
+	},
+	{
+		"name": "NumClearStateProgramPages",
+		"type": "uint64",
+		"notes": "Number of ClearState Program pages"
 	}
 ]

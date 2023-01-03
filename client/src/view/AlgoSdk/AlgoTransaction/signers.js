@@ -1,9 +1,6 @@
-import algosdk from 'algosdk'
-import txnBuilder from 'algosdk/src/transaction'
-import multisig from 'algosdk/src/multisig'
-import encoding from 'algosdk/src/encoding/encoding'
-import address from 'algosdk/src/encoding/address'
-
+import algosdk, { decodeAddress, encodeObj, signMultisigTransaction } from 'algosdk'
+import * as txnBuilder from 'algosdk/dist/esm/src/transaction'
+import { MultisigTransaction } from 'algosdk/dist/esm/src/multisig'
 export const regularSigner = sp => async (txn, gid) => {
   const algoTxn = new txnBuilder.Transaction(txn)
   if (gid) {
@@ -16,7 +13,7 @@ export const regularSigner = sp => async (txn, gid) => {
 }
 
 export const msigSigner = (getSigs, msig) => async (txn, gid) => {
-  const algoTxn = new multisig.MultisigTransaction(txn)
+  const algoTxn = new MultisigTransaction(txn)
   if (gid) {
     algoTxn.group = gid
   }
@@ -24,7 +21,7 @@ export const msigSigner = (getSigs, msig) => async (txn, gid) => {
   const sigs = await getSigs(algoTxn)
 
   const subsig = msig.addrs.map(addr => {
-    const pk = address.decode(addr).publicKey
+    const pk = decodeAddress(addr).publicKey
     if (!sigs[addr]) {
       return { pk: Buffer.from(pk) }
     }
@@ -42,7 +39,7 @@ export const msigSigner = (getSigs, msig) => async (txn, gid) => {
 
   return {
     txID: algoTxn.txID().toString(),
-    blob: new Uint8Array(encoding.encode({
+    blob: new Uint8Array(encodeObj({
       msig: abbrMsig,
       txn: algoTxn.get_obj_for_encoding(),
     }))
@@ -53,9 +50,9 @@ export const lsigSigner = (sp, lsig) => async (txn, gid) => {
   const byteCode = new Uint8Array(Buffer.from(lsig.program, 'base64'))
   let logicSig
   if (lsig.args) {
-    logicSig = algosdk.makeLogicSig(byteCode, lsig.args)
+    logicSig = new algosdk.LogicSigAccount(byteCode, lsig.args)
   } else {
-    logicSig = algosdk.makeLogicSig(byteCode)
+    logicSig = new algosdk.LogicSigAccount(byteCode)
   }
   if (sp) {
     await sp({ logicSig })

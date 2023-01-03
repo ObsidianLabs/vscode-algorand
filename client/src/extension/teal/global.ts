@@ -43,5 +43,35 @@ export default [
 		"name": "CurrentApplicationID",
 		"type": "uint64",
 		"notes": "ID of current application executing. Fails if no such application is executing. LogicSigVersion >= 2."
+	},
+	{
+		"name": "CreatorAddress",
+		"type": "[]byte",
+		"notes": "Address of the creator of the current application. Application mode only."
+	},
+	{
+		"name": "CurrentApplicationAddress",
+		"type": "[]byte",
+		"notes": "Address that the current application controls. Application mode only."
+	},
+	{
+		"name": "GroupID",
+		"type": "[]byte",
+		"notes": "ID of the transaction group. 32 zero bytes if the transaction is not part of a group."
+	},
+	{
+		"name": "OpcodeBudget",
+		"type": "uint64",
+		"notes": "The remaining cost that can be spent by opcodes in this program."
+	},
+	{
+		"name": "CallerApplicationID",
+		"type": "uint64",
+		"notes": "The application ID of the application that called this application. 0 if this application is at the top-level. Application mode only."
+	},
+	{
+		"name": "CallerApplicationAddress",
+		"type": "[]byte",
+		"notes": "The application address of the application that called this application. ZeroAddress if this application is at the top-level. Application mode only."
 	}
 ]

@@ -103,7 +103,6 @@ export default class PushTransactionButton extends PureComponent {
 	pushTransaction = async () => {
 		this.setState({ pending: true })
 		this.modal.current.hideError()
-
 		try {
 			const txns = await this.prepareTxns()
 			const algoTxn = this.props.algoSdk.newTransaction(txns, this.signatureProvider)
@@ -112,6 +111,7 @@ export default class PushTransactionButton extends PureComponent {
 			instanceChannel.invoke('txPushed', result)
 			this.modal.current.closeModal()
 		} catch (e) {
+			console.log(e)
 			this.modal.current.showError(e.message)
 		}
 		

@@ -36,7 +36,7 @@ export default class AlgoSdk {
 
   async getTransactions (addr, cursor) {
     if (!cursor) {
-      const result = await fetch(`https://api.testnet.algoexplorer.io/v1/account/${addr}/transactions/latest/20`)
+      const result = await fetch(`https://testnet-algorand.api.purestake.io/ps2/account/${addr}/transactions/latest/20`)
       const json = await result.json()
       return {
         cursor: json.length ? json[0].index - 1 : '',
@@ -44,7 +44,7 @@ export default class AlgoSdk {
       }
     }
     const from = cursor < 20 ? 0 : cursor - 19
-    const result = await fetch(`https://api.testnet.algoexplorer.io/v1/account/${addr}/transactions/from/${from}/to/${cursor}`)
+    const result = await fetch(`https://testnet-algorand.api.purestake.io/ps2/account/${addr}/transactions/from/${from}/to/${cursor}`)
     const json = await result.json()
     return {
       cursor: json.length ? json[0].index - 1 : '',

@@ -68,7 +68,7 @@ export class BuildAscTaskProvider implements vscode.TaskProvider {
 		const extname = path.extname(file)
 		let execution
 		if (extname === '.py') {
-			execution = new vscode.ShellExecution(`docker run -t --rm --name build-pyteal -v "${this.workspaceRoot}:/project" -w /project obsidians/pyteal:0.6.0 /bin/bash -c "python ${file} > ${file.replace('.py', '.teal')}"`)
+			execution = new vscode.ShellExecution(`docker run -t --rm --name build-pyteal -v "${this.workspaceRoot}:/project" -w /project north1874/algorand-compiler:0.0.1 /bin/bash -c "python ${file} > ${file.replace('.py', '.teal')}"`)
 		} else if (extname === '.teal') {
 			execution = new vscode.ShellExecution(`docker run -t --rm --name build-teal -v "${this.workspaceRoot}:/project" -w /project algorand/stable:${version} /bin/bash -c "/root/node/goal clerk compile ${file}"`)
 		}

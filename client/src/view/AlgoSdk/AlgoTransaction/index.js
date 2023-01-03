@@ -71,7 +71,7 @@ export default class AlgoTransaction {
     let algoTxn
     switch (type) {
       case 'pay':
-        const amount = parseInt(params.amount)
+        const amount = Number(params.amount)
         if (params.to && !amount) {
           throw new Error(`Amount cannot be empty or zero`)
         }
@@ -192,7 +192,6 @@ export default class AlgoTransaction {
         const sp = this.signatureProvider(addr)
         return new SingleTxn(algoTxn, regularSigner(sp))
       }
-
       const msig = this.accounts[params.from].msig
       if (!msig) {
         throw new Error('The from is not a multi-sig address.')

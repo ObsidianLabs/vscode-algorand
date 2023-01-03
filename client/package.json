@@ -21,7 +21,7 @@
 	"dependencies": {
 		"@fortawesome/fontawesome-pro": "^5.14.0",
 		"@obsidians/ui-components": "^0.2.2",
-		"algosdk": "^1.7.2",
+		"algosdk": "^1.23.2",
 		"bootstrap": "^4.5.2",
 		"classnames": "^2.2.6",
 		"lodash": "^4.17.20",

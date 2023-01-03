@@ -52,7 +52,7 @@ class DockerImageChannel extends IpcChannel {
 			const disposable = vscode.tasks.onDidEndTask(e => {
 				if (e.execution.task.name === 'Pull docker image') {
 					disposable.dispose()
-					resolve()
+					resolve(void 0)
 				}
 			})
 		})
@@ -63,8 +63,8 @@ class DockerImageChannel extends IpcChannel {
   }
 
   async remoteVersions (size = 10) {
-		const res = await this.fetch(`http://registry.hub.docker.com/v1/repositories/${this.imageName}/tags`)
-    let versions = JSON.parse(res).filter(({ name }) => this.filter(name))
+		const res = await this.fetch(`http://hub.docker.com/v2/repositories/${this.imageName}/tags`)
+    let versions = JSON.parse(res).results.filter(({ name }) => this.filter(name))
     if (this.sort) {
       versions = versions.sort((x, y) => this.sort(x.name, y.name))
     }

@@ -7,8 +7,9 @@ export default class SingleTxn {
 
   setDefaultParams (params) {
     this.txn = {
+      ...this.txn,
       ...params,
-      ...this.txn
+      gh: params.genesisHash
     }
   }
 
