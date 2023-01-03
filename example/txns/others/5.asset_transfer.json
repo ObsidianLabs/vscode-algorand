@@ -3,7 +3,7 @@
     {
       "type": "asset-opt-in",
       "params": {
-        "assetId": 9703094,
+        "assetId": 149226639,
         "from": "5XMNQUQWCNKDJZJD4H3GZKFN7ZV3EHA72QWW425YVE26TCO6JBIQ65APO4"
       },
       "signers": [
@@ -13,10 +13,10 @@
     {
       "type": "asset-transfer",
       "params": {
-        "assetId": 9703094,
+        "assetId": 149226639,
         "from": "LEK4LPP5IRJDRDQIXFTWLBWPJXJGBHW23FB4KP2LBONW6JMWTLN4GMKCMM",
         "to": "5XMNQUQWCNKDJZJD4H3GZKFN7ZV3EHA72QWW425YVE26TCO6JBIQ65APO4",
-        "amount": 10
+        "amount": 90
       },
       "signers": [
         "LEK4LPP5IRJDRDQIXFTWLBWPJXJGBHW23FB4KP2LBONW6JMWTLN4GMKCMM"
