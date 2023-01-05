@@ -1,6 +1,6 @@
-import algosdk, { decodeAddress, encodeObj, signMultisigTransaction } from 'algosdk'
-import * as txnBuilder from 'algosdk/dist/esm/src/transaction'
-import { MultisigTransaction } from 'algosdk/dist/esm/src/multisig'
+import algosdk, { decodeAddress, encodeObj } from 'algosdk'
+import * as txnBuilder from '../../../../node_modules/algosdk/dist/esm/transaction'
+import { MultisigTransaction } from '../../../../node_modules/algosdk/dist/esm/multisig'
 export const regularSigner = sp => async (txn, gid) => {
   const algoTxn = new txnBuilder.Transaction(txn)
   if (gid) {
