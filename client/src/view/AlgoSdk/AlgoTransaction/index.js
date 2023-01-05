@@ -75,9 +75,7 @@ export default class AlgoTransaction {
         if (params.to && !amount) {
           throw new Error(`Amount cannot be empty or zero`)
         }
-        if (params.amount !== amount.toString()) {
-          throw new Error(`Invalid amount value: ${params.amount}`)
-        }
+      
         algoTxn = {
           type: 'pay',
           from: this.getAddress(params.from),
