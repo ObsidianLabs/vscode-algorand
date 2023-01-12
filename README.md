@@ -88,7 +88,7 @@ To be able to perform the signing process, you need to provide a `keys.json` fil
 When finished, click the *Push Transaction* button, confirm and send the transaction to the Algorand network.
 <img src="./screenshots/sign-push.png">
 #### Algorand smart contract
-We provided an example project to demostrate how to use this extension to work on Algorand smart contract.
+We provide an example project to demostrate how to use this extension to work on Algorand smart contract.
 
 1. Open the `example` in VS Code as the project root folder;
 <img src="./screenshots/example-folder.png">
