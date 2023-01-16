@@ -135,6 +135,6 @@ We provide an example project to demostrate how to use this extension to work on
 
 ### Build from source
 
-- Run `npm install -g vsce`
+- Run `npm install -g @vscode/vsce`
 - Run `npm install` in this folder
 - Run `vsce package`
